@@ -1,2 +1,5 @@
 ### LoL api key should not be published
 api-key.js
+
+### fracking webstorm
+*.idea*

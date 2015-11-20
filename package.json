@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Alex-Barbier/Inexorable-Kingslayer/issues"
   },
-  "homepage": "https://github.com/Alex-Barbier/Inexorable-Kingslayer#readme"
+  "homepage": "https://github.com/Alex-Barbier/Inexorable-Kingslayer#readme",
+  "dependencies": {
+    "request": "^2.67.0"
+  }
 }
