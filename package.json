@@ -1,0 +1,19 @@
+{
+  "name": "inexorable-kingslayer",
+  "version": "0.0.0",
+  "description": "Mess with the LoL API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Barbier/Inexorable-Kingslayer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alex-Barbier/Inexorable-Kingslayer/issues"
+  },
+  "homepage": "https://github.com/Alex-Barbier/Inexorable-Kingslayer#readme"
+}
