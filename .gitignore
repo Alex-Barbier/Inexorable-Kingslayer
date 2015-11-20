@@ -3,3 +3,6 @@ api-key.js
 
 ### fracking webstorm
 *.idea*
+
+### node modules
+*node_modules*
