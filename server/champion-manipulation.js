@@ -1,5 +1,5 @@
 const lol = require('../lol/lol');
-const staticUrlBasis = 'http://ddragon.leagueoflegends.com/cdn/'; //5.22.3/img/champion/Aatrox.png';
+const staticUrlBasis = 'http://ddragon.leagueoflegends.com/cdn/';
 
 var champions = [];
 lol.getStaticVersion(function(staticVersionData) {
