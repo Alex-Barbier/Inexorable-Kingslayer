@@ -20,6 +20,8 @@ app.get('/', function(req, res, next) {
   });
 });
 
+app.use(express.static('front'));
+
 app.get('/login/:summonerName', function(req, res) {
   const summonerName = req.params.summonerName;
   lol.getSummonerByName(summonerName, function(summonerData) {
