@@ -1,12 +1,9 @@
-const express          = require('express');
-const lol              = require('../lol/lol');
-const dateManipulation = require('./date-manipulation');
+const express              = require('express');
+const lol                  = require('../lol/lol');
+const dateManipulation     = require('./date-manipulation');
+const championManipulation = require('./champion-manipulation');
 
 const app = express();
-
-lol.getChampionsList(function(championsData) {
-  console.log(championsData);
-});
 
 app.get('/login/:summonerName', function(req, res) {
   const summonerName = req.params.summonerName;
@@ -16,7 +13,8 @@ app.get('/login/:summonerName', function(req, res) {
 
     lol.getRankedMatches(summonerId, function(matchesData) {
       matchesData = JSON.parse(matchesData);
-      dateManipulation.getMatchNumberByDay(matchesData.matches);
+
+      championManipulation.getNumberOfGameByChampion(matchesData.matches);
 
       res.send(matchesData.matches);
     });
