@@ -13,3 +13,15 @@ git merge rct/master master
 
 git push heroku rct/master:master
 ```
+
+## Ensure one instance of the server is running
+
+```
+heroku ps:scale web=1
+```
+
+## Open heroku server with browser
+
+```
+heroku open
+```
