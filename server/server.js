@@ -6,17 +6,17 @@ const roleManipulation     = require('./role-manipulation');
 
 const app = express();
 
-const fs = require("fs");
+const fs       = require("fs");
 const filename = "./front/index.html";
 
-app.get('/', function(req, res, next){
+app.get('/', function(req, res, next) {
   res.writeHead(200, {
-      "Content-Type": "text/html"
+    "Content-Type" : "text/html"
   });
   fs.readFile(filename, "utf8", function(err, data) {
-      if (err) throw err;
-      res.write(data);
-      res.end();
+    if (err) throw err;
+    res.write(data);
+    res.end();
   });
 });
 

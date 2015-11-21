@@ -1,15 +1,15 @@
-const moment  = require('moment');
+const moment = require('moment');
 
 module.exports = {
-  getMatchNumberByDayOfWeek: matchList => {
+  getMatchNumberByDayOfWeek : matchList => {
     var matchNumberByDay = {
-      Monday: 0,
-      Tuesday: 0,
-      Wednesday: 0,
-      Thursday: 0,
-      Friday: 0,
-      Saturday: 0,
-      Sunday: 0
+      Monday    : 0,
+      Tuesday   : 0,
+      Wednesday : 0,
+      Thursday  : 0,
+      Friday    : 0,
+      Saturday  : 0,
+      Sunday    : 0
     };
 
     matchList.forEach(match => {
@@ -20,7 +20,7 @@ module.exports = {
     return matchNumberByDay;
   },
 
-  getMatchNumberByDay: matchList => {
+  getMatchNumberByDay : matchList => {
     var matchNumberByDay = {};
 
     matchList.forEach(match => {

@@ -13,7 +13,7 @@ const apiSuffixes = {
 };
 
 module.exports = {
-  getStaticVersion: function(callback) {
+  getStaticVersion      : function(callback) {
     console.log(`Fetching static api version`);
     const url = `${staticVersions}`;
     request(url, function(error, response) {
@@ -31,7 +31,7 @@ module.exports = {
       }
     });
   },
-  getSummonerByName : function(summonerName, callback) {
+  getSummonerByName     : function(summonerName, callback) {
     console.log(`Fetching summoner with summonerName : ${summonerName}`);
     const url = `${apiBasis}${apiSuffixes.summonerByName}${summonerName}?api_key=${apiKey}`;
     request(url, function(error, response) {
@@ -40,7 +40,7 @@ module.exports = {
       }
     });
   },
-  getRankedMatches  : function(summonerId, callback) {
+  getRankedMatches      : function(summonerId, callback) {
     console.log(`Fetching ranked matches with summonerId : ${summonerId}`);
     const url = `${apiBasis}${apiSuffixes.matchListBySummoner}${summonerId}?rankedQueues=RANKED_SOLO_5x5&seasons=SEASON2015&api_key=${apiKey}`;
     request(url, function(error, response) {
