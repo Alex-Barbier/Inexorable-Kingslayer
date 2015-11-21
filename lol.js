@@ -19,7 +19,7 @@ module.exports = {
     },
     getRankedMatches  : function(summonerId, callback) {
         console.log(`Fetching ranked matches with summonerId : ${summonerId}`);
-        const url = `${apiBasis}${apiSuffixes.matchListBySummoner}${summonerId}?rankedQueues=RANKED_SOLO_5x5&seasons=PRESEASON2016&api_key=${apiKey}`;
+        const url = `${apiBasis}${apiSuffixes.matchListBySummoner}${summonerId}?rankedQueues=RANKED_SOLO_5x5&seasons=SEASON2015&api_key=${apiKey}`;
         request(url, function(error, response) {
             if (!error && response.statusCode == 200) {
                 callback(response.body);

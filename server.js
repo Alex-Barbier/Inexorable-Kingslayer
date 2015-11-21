@@ -4,6 +4,36 @@ const lol     = require('./lol');
 
 const app = express();
 
+function getMatchNumberByDayOfWeek(matchList) {
+  var matchNumberByDay = {
+    Monday: 0,
+    Tuesday: 0,
+    Wednesday: 0,
+    Thursday: 0,
+    Friday: 0,
+    Saturday: 0,
+    Sunday: 0
+  };
+
+  matchList.forEach(match => {
+    var dayOfWeek = moment(match.timestamp).format("dddd");
+    matchNumberByDay[dayOfWeek] += 1;
+  });
+  console.log(matchNumberByDay);
+  return matchNumberByDay;
+}
+
+function getMatchNumberByDay(matchList) {
+  var matchNumberByDay = {};
+
+  matchList.forEach(match => {
+    var dayOfWeek = moment(match.timestamp).format("L");
+    matchNumberByDay[dayOfWeek] ? matchNumberByDay[dayOfWeek]++ : matchNumberByDay[dayOfWeek] = 1;
+  });
+  console.log(matchNumberByDay);
+  return matchNumberByDay;
+}
+
 app.get('/login/:summonerName', function(req, res) {
   const summonerName = req.params.summonerName;
   lol.getSummonerByName(summonerName, function(summonerData) {
@@ -13,9 +43,11 @@ app.get('/login/:summonerName', function(req, res) {
     lol.getRankedMatches(summonerId, function(matchesData) {
       matchesData = JSON.parse(matchesData);
       matchesData.matches.map(match => {
-        match.date = moment(match.timestamp).format("dddd, h:mm:ss a, MMMM Do YYYY");
+        match.date = moment(match.timestamp).format("L");
         return match;
       });
+      getMatchNumberByDay(matchesData.matches);
+
       res.send(matchesData.matches);
     });
   });
