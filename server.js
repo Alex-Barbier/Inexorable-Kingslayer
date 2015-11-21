@@ -3,6 +3,18 @@ const lol     = require('./lol');
 
 const app = express();
 
+app.get('/login/:summonerName', function(req, res) {
+  const summonerName = req.params.summonerName;
+  lol.getSummonerByName(summonerName, function(summonerData) {
+    summonerData = JSON.parse(summonerData);
+    const summonerId = summonerData[summonerName.toLowerCase()].id;
+
+    lol.getRankedMatches(summonerId, function(matches) {
+      res.send(matches);
+    });
+  });
+});
+
 app.get('/summoner/:summonerName', function(req, res) {
   lol.getSummonerByName(req.params.summonerName, function(summonerData) {
     res.send(summonerData);
