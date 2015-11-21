@@ -1,14 +1,21 @@
 const lol = require('../lol/lol');
+const staticUrlBasis = 'http://ddragon.leagueoflegends.com/cdn/'; //5.22.3/img/champion/Aatrox.png';
 
 var champions = [];
-lol.getChampionsList(function(championsData) {
-  championsData = JSON.parse(championsData);
-  for (championData in championsData.data) {
-    champions.push({
-      id: championsData.data[championData].id,
-      name: championsData.data[championData].name
-    });
-  }
+lol.getStaticVersion(function(staticVersionData) {
+  staticVersionData = JSON.parse(staticVersionData);
+  const staticVersion = staticVersionData[0];
+  lol.getChampionsListImage(function(championsData) {
+    championsData = JSON.parse(championsData);
+    for (championData in championsData.data) {
+      champions.push({
+        id: championsData.data[championData].id,
+        name: championsData.data[championData].name,
+        image: `${staticUrlBasis}${staticVersion}/img/champion/${championsData.data[championData].image.full}`
+      });
+    }
+    console.log(champions);
+  });
 });
 
 function getChampionNameById (championId) {

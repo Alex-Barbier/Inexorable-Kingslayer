@@ -4,6 +4,7 @@ const apiKey  = require('../api-key');
 const region         = 'euw';
 const apiBasis       = `https://${region}.api.pvp.net/api/lol/${region}/`;
 const apiStaticBasis = `https://global.api.pvp.net/api/lol/static-data/${region}/`;
+const staticVersions = 'https://ddragon.leagueoflegends.com/api/versions.json';
 
 const apiSuffixes = {
   staticChampions     : 'v1.2/champion/',
@@ -12,9 +13,18 @@ const apiSuffixes = {
 };
 
 module.exports = {
-  getChampionsList  : function(callback) {
-    console.log(`Fetching static champion list`);
-    const url = `${apiStaticBasis}${apiSuffixes.staticChampions}?api_key=${apiKey}`;
+  getStaticVersion: function(callback) {
+    console.log(`Fetching static api version`);
+    const url = `${staticVersions}`;
+    request(url, function(error, response) {
+      if (!error && response.statusCode == 200) {
+        callback(response.body);
+      }
+    });
+  },
+  getChampionsListImage : function(callback) {
+    console.log(`Fetching static champion list with image`);
+    const url = `${apiStaticBasis}${apiSuffixes.staticChampions}?champData=image&api_key=${apiKey}`;
     request(url, function(error, response) {
       if (!error && response.statusCode == 200) {
         callback(response.body);
