@@ -14,7 +14,6 @@ lol.getStaticVersion(function(staticVersionData) {
         image: `${staticUrlBasis}${staticVersion}/img/champion/${championsData.data[championData].image.full}`
       });
     }
-    console.log(champions);
   });
 });
 

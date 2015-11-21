@@ -5,6 +5,20 @@ const championManipulation = require('./champion-manipulation');
 
 const app = express();
 
+const fs = require("fs");
+const filename = "./front/index.html";
+
+app.get('/', function(req, res, next){
+  res.writeHead(200, {
+      "Content-Type": "text/html"
+  });
+  fs.readFile(filename, "utf8", function(err, data) {
+      if (err) throw err;
+      res.write(data);
+      res.end();
+  });
+});
+
 app.get('/login/:summonerName', function(req, res) {
   const summonerName = req.params.summonerName;
   lol.getSummonerByName(summonerName, function(summonerData) {

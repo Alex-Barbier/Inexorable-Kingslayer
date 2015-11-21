@@ -6,3 +6,6 @@ api-key.js
 
 ### node modules
 *node_modules*
+
+### debug messages
+npm-debug.log
