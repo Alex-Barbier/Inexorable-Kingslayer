@@ -4,6 +4,10 @@ const dateManipulation     = require('./date-manipulation');
 
 const app = express();
 
+lol.getChampionsList(function(championsData) {
+  console.log(championsData);
+});
+
 app.get('/login/:summonerName', function(req, res) {
   const summonerName = req.params.summonerName;
   lol.getSummonerByName(summonerName, function(summonerData) {
@@ -12,10 +16,6 @@ app.get('/login/:summonerName', function(req, res) {
 
     lol.getRankedMatches(summonerId, function(matchesData) {
       matchesData = JSON.parse(matchesData);
-      // matchesData.matches.map(match => {
-      //   match.date = moment(match.timestamp).format("L");
-      //   return match;
-      // });
       dateManipulation.getMatchNumberByDay(matchesData.matches);
 
       res.send(matchesData.matches);
