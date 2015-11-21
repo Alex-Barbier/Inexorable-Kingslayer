@@ -2,6 +2,7 @@ const express              = require('express');
 const lol                  = require('../lol/lol');
 const dateManipulation     = require('./date-manipulation');
 const championManipulation = require('./champion-manipulation');
+const roleManipulation     = require('./role-manipulation');
 
 const app = express();
 
@@ -29,8 +30,10 @@ app.get('/login/:summonerName', function(req, res) {
       matchesData = JSON.parse(matchesData);
 
       championManipulation.getNumberOfGameByChampion(matchesData.matches);
+      roleManipulation.getRoleStats(matchesData.matches);
 
       res.send(matchesData.matches);
+
     });
   });
 });
@@ -53,4 +56,3 @@ const server = app.listen(process.env.PORT || 3000, function() {
 
   console.log('Example app listening at http://%s:%s', host, port);
 });
-
