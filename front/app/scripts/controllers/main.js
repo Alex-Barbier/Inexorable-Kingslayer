@@ -8,10 +8,14 @@
  * Controller of the inexorableKingslayerApp
  */
 angular.module('inexorableKingslayerApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', function ($http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    $http.get('http://localhost:3000/login/Elwanna')
+    	.then(function(data) {
+    		console.log(data);
+    	});
   });
