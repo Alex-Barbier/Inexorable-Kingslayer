@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment'); 
 
 module.exports = {
   getMatchNumberByDayOfWeek : matchList => {
@@ -10,8 +10,8 @@ module.exports = {
       Friday    : 0,
       Saturday  : 0,
       Sunday    : 0
-    };
-
+    }; 
+ 
     matchList.forEach(match => {
       var dayOfWeek = moment(match.timestamp).format("dddd");
       matchNumberByDay[dayOfWeek] += 1;
