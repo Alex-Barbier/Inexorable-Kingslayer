@@ -6,28 +6,11 @@ const roleManipulation     = require('./role-manipulation');
 
 const app = express();
 
-const fs       = require("fs");
-const filename = "./front/index.html";
-
-app.get('/', function(req, res, next) {
-  res.writeHead(200, {
-    "Content-Type" : "text/html"
-  });
-  fs.readFile(filename, "utf8", function(err, data) {
-    if (err) throw err;
-    res.write(data);
-    res.end();
-  });
-});
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
-
-app.use(express.static('front'));
 
 app.get('/login/:summonerName', function(req, res) {
   const summonerName = req.params.summonerName;
