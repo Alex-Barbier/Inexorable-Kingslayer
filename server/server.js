@@ -38,7 +38,14 @@ app.get('/summoner/:summonerName', function(req, res) {
 
 app.get('/ranked/:summonerId', function(req, res) {
   lol.getRankedMatches(req.params.summonerId, function(matchesData) {
-    res.send(matchesData);
+    if(!req.query.last) {
+      res.send(matchesData);
+    }
+    if(req.query.last) {
+      matchesData = JSON.parse(matchesData);
+      const matchesToReturn = matchesData.matches.splice(0, req.query.last);
+      res.send(matchesToReturn);
+    }
   });
 });
 
