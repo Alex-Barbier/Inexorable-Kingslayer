@@ -38,8 +38,5 @@
   },
   "scripts": {
     "test": "grunt test"
-  },
-  "dependencies": {
-    "angular-ui-router": "^0.2.15"
   }
 }

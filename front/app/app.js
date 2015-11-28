@@ -11,5 +11,6 @@
 angular
   .module('inexorableKingslayerApp', [
     'ngAnimate',
-    'ngTouch'
+    'ngTouch',
+    'ui.router'
   ]);

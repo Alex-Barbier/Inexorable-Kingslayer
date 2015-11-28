@@ -8,7 +8,7 @@
  * Controller of the inexorableKingslayerApp
  */
 angular.module('inexorableKingslayerApp')
-  .controller('MainCtrl', function ($http) {
+  .controller('LandingCtrl', function ($http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
