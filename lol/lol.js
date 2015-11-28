@@ -9,8 +9,9 @@ const staticVersions = 'https://ddragon.leagueoflegends.com/api/versions.json';
 const apiSuffixes = {
   staticChampions     : 'v1.2/champion/',
   summonerByName      : 'v1.4/summoner/by-name/',
-  matchListBySummoner : 'v2.2/matchlist/by-summoner/'
-};
+  matchListBySummoner : 'v2.2/matchlist/by-summoner/',
+  match               : 'v2.2/match/'
+}; 
 
 module.exports = {
   getStaticVersion      : function(callback) {
@@ -43,6 +44,15 @@ module.exports = {
   getRankedMatches      : function(summonerId, callback) {
     console.log(`Fetching ranked matches with summonerId : ${summonerId}`);
     const url = `${apiBasis}${apiSuffixes.matchListBySummoner}${summonerId}?rankedQueues=RANKED_SOLO_5x5&seasons=SEASON2015&api_key=${apiKey}`;
+    request(url, function(error, response) {
+      if (!error && response.statusCode == 200) {
+        callback(response.body);
+      }
+    });
+  },
+  getMatch: function(matchId, callback) {
+    console.log(`Fetching matches with matchId : ${matchId}`);
+    const url = `${apiBasis}${apiSuffixes.match}${matchId}?api_key=${apiKey}`;
     request(url, function(error, response) {
       if (!error && response.statusCode == 200) {
         callback(response.body);
