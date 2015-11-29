@@ -20,11 +20,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <div ng-include="'layout/header/header.html'" ng-controller="headerController as headerCtrl"></div>
     <div ui-view></div>
-    <div class="container">
-      <div ng-include="'layout/landing/landing.html'" ng-controller="LandingCtrl"></div>
-    </div>
-    <div ui-view></div>
+    <div ng-include="'layout/footer/footer.html'" ng-controller="footerController as footerCtrl"></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -49,7 +47,11 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="app.js"></script>
+        <script src="app.router.js"></script>
         <script src="layout/landing/landing.js"></script>
+        <script src="layout/about/about.js"></script>
+        <script src="layout/header/header.js"></script>
+        <script src="layout/footer/footer.js"></script>
         <!-- endbuild -->
 </body>
 </html>

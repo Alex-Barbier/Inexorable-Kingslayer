@@ -1,11 +1,15 @@
+'use strict';
 /**
- * @ngdoc overview
- * @name inexorableKingslayerApp
+ * @ngdoc function
+ * @name inexorableKingslayerApp.controller:footerController
  * @description
- * # inexorableKingslayerApp
+ * # Footer
  *
- * Main module of the application.
+ * Controller of the Footer
  */
-inexorableKingslayerApp.controller("footerController", function($scope) {
+
+angular
+    .module('inexorableKingslayerApp')
+    .controller('footerController', function($scope) {
 
 });

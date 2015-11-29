@@ -1,3 +1,4 @@
+'use strict';
 /**
  * @ngdoc overview
  * @name inexorableKingslayerApp
@@ -6,8 +7,11 @@
  *
  * Main module of the application.
  */
-var inexorableKingslayerApp = angular.module('inexorableKingslayerApp', [
-    'ngAnimate',
-    'ngTouch',
-    'ui.router'
-]);
+
+
+angular
+    .module('inexorableKingslayerApp', [
+        'ngAnimate',
+        'ngTouch',
+        'ui.router'
+    ]);
