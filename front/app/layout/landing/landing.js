@@ -10,10 +10,31 @@
 
 angular
     .module('inexorableKingslayerApp')
-    .controller('landingController', ['restangular', function(Restangular) {
+    .controller('landingController', ['starterFactory', '$scope', function(starterFactory, $scope) {
 
-    $http.get('http://localhost:3000/login/Elwanna')
-        .then(function(data) {
-            console.log(data);
-        });
-}]);
+        let _this = this;
+
+        _this.search = search;
+        _this.trackedUser = null;
+
+        _setData('Elwanna');
+
+        function search(queriedUser) {
+            _setData(queriedUser);
+        }
+
+        function _setData(queriedUser) {
+            console.log(_this.trackedUser);
+            console.log(starterFactory);
+            starterFactory.getUser(queriedUser).then(function(data){
+                console.log(data);
+            });
+        }
+
+        /*$scope.$watch(function() {
+            return _this.trackedUser;
+        }, function(newValue) {
+            console.log(newValue);
+        });*/
+
+    }]);
