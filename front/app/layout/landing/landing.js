@@ -1,10 +1,8 @@
-'use strict';
-
 /**
  * @ngdoc function
- * @name inexorableKingslayerApp.controller:MainCtrl
+ * @name inexorableKingslayerApp.controller:LandingCtrl
  * @description
- * # MainCtrl
+ * # Landing
  * Controller of the inexorableKingslayerApp
  */
 angular.module('inexorableKingslayerApp')

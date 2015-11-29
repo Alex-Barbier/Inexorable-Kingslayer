@@ -6,8 +6,6 @@
  *
  * Main module of the application.
  */
-var inexorableKingslayerApp = angular.module('inexorableKingslayerApp', [
-    'ngAnimate',
-    'ngTouch',
-    'ui.router'
-]);
+inexorableKingslayerApp.controller("headerController", function($scope) {
+
+});
