@@ -12,16 +12,12 @@ angular
     .module('inexorableKingslayerApp')
     .factory('starterFactory', ['Restangular', function(Restangular) {
 
-        function getUser(userName) {
-            Restangular.one('login', userName).get().then(function(data) {
-                console.log(data);
-            });
-        }
-
         return {
             getUser : getUser
         };
 
+        function getUser(userName) {
+            return Restangular.one('login', userName).get();
+        }
 
     }]);
-

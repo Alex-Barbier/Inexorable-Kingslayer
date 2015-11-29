@@ -9,32 +9,20 @@
  */
 
 angular
-    .module('inexorableKingslayerApp')
-    .controller('landingController', ['starterFactory', '$scope', function(starterFactory, $scope) {
+  .module('inexorableKingslayerApp')
+  .controller('landingController', ['$rootScope', function($rootScope) {
+    let _this = this;
 
-        let _this = this;
+    _this.trackedUser = {};
 
-        _this.search = search;
-        _this.trackedUser = null;
+    _this.searchPlayer = searchPlayer;
 
-        _setData('Elwanna');
+    $rootScope.$on('statUpdate', function(event, payload) {
+      _this.trackedUser = payload;
+    });
 
-        function search(queriedUser) {
-            _setData(queriedUser);
-        }
+    function searchPlayer() {
+      $rootScope.$emit('search', _this.trackedUser.name);
+    }
 
-        function _setData(queriedUser) {
-            console.log(_this.trackedUser);
-            console.log(starterFactory);
-            starterFactory.getUser(queriedUser).then(function(data){
-                console.log(data);
-            });
-        }
-
-        /*$scope.$watch(function() {
-            return _this.trackedUser;
-        }, function(newValue) {
-            console.log(newValue);
-        });*/
-
-    }]);
+  }]);
