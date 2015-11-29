@@ -10,12 +10,7 @@
 
 angular
     .module('inexorableKingslayerApp')
-    .controller('landingController', ['$http', '$scope', function($http, $scope) {
-    $scope.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-    ];
+    .controller('landingController', ['restangular', function(Restangular) {
 
     $http.get('http://localhost:3000/login/Elwanna')
         .then(function(data) {
