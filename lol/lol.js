@@ -1,5 +1,6 @@
 const request = require('request');
 const apiKey  = require('../api-key');
+const chalk   = require('chalk');
 
 const region         = 'euw';
 const apiBasis       = `https://${region}.api.pvp.net/api/lol/${region}/`;
@@ -15,7 +16,7 @@ const apiSuffixes = {
 
 module.exports = {
   getStaticVersion      : function(callback) {
-    console.log(`Fetching static api version`);
+    console.log(chalk.blue(`Fetching static api version`));
     const url = `${staticVersions}`;
     request(url, function(error, response) {
       if (!error && response.statusCode == 200) {
@@ -24,7 +25,7 @@ module.exports = {
     });
   },
   getChampionsListImage : function(callback) {
-    console.log(`Fetching static champion list with image`);
+    console.log(chalk.blue(`Fetching static champion list with image`));
     const url = `${apiStaticBasis}${apiSuffixes.staticChampions}?champData=image&api_key=${apiKey}`;
     request(url, function(error, response) {
       if (!error && response.statusCode == 200) {
@@ -33,7 +34,7 @@ module.exports = {
     });
   },
   getSummonerByName     : function(summonerName, callback) {
-    console.log(`Fetching summoner with summonerName : ${summonerName}`);
+    console.log(chalk.blue(`Fetching summoner with summonerName : ${summonerName}`));
     const url = `${apiBasis}${apiSuffixes.summonerByName}${summonerName}?api_key=${apiKey}`;
     request(url, function(error, response) {
       if (!error && response.statusCode == 200) {
@@ -42,7 +43,7 @@ module.exports = {
     });
   },
   getRankedMatches      : function(summonerId, callback) {
-    console.log(`Fetching ranked matches with summonerId : ${summonerId}`);
+    console.log(chalk.blue(`Fetching ranked matches with summonerId : ${summonerId}`));
     const url = `${apiBasis}${apiSuffixes.matchListBySummoner}${summonerId}?rankedQueues=RANKED_SOLO_5x5&seasons=SEASON2015&api_key=${apiKey}`;
     request(url, function(error, response) {
       if (!error && response.statusCode == 200) {
