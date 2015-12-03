@@ -1,21 +1,16 @@
 'use strict';
 
 const request   = require('request');
-const apiKey    = require('../api-key');
 const chalk     = require('chalk');
 const rateLimit = require('function-rate-limit');
+
+const apiKey    = require('../api-key');
+const apiSuffixes    = require('./api-suffixes');
 
 const region         = 'euw';
 const apiBasis       = `https://${region}.api.pvp.net/api/lol/${region}/`;
 const apiStaticBasis = `https://global.api.pvp.net/api/lol/static-data/${region}/`;
 const staticVersions = 'https://ddragon.leagueoflegends.com/api/versions.json';
-
-const apiSuffixes = {
-  staticChampions     : 'v1.2/champion/',
-  summonerByName      : 'v1.4/summoner/by-name/',
-  matchListBySummoner : 'v2.2/matchlist/by-summoner/',
-  match               : 'v2.2/match/'
-};
 
 // https://developer.riotgames.com/docs/api-keys
 // Apply first rate limitation : 10 request every 10 seconds
@@ -23,6 +18,9 @@ let apiCall = rateLimit(10, 10 * 1000, (url, callback) => {
   request(url, (error, response) => {
     if (!error && response.statusCode == 200) {
       callback(response.body);
+    }
+    else {
+      callback(response);
     }
   });
 });

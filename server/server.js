@@ -21,6 +21,7 @@ app.get('/login/:summonerName', function(req, res) {
     lol.getRankedMatches(summonerId, function(matchesData) {
       matchesData = JSON.parse(matchesData);
 
+      dateManipulation.getMatchNumberByHour(matchesData.matches);
       championManipulation.getNumberOfGameByChampion(matchesData.matches);
       roleManipulation.getRoleStats(matchesData.matches);
 
