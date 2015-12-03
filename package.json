@@ -21,6 +21,7 @@
     "eslint": "^1.10.2",
     "eslint-config-meetic": "^0.1.1",
     "express": "^4.13.3",
+    "function-rate-limit": "^1.0.1",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.1",
     "moment": "^2.10.6",
