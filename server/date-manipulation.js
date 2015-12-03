@@ -3,43 +3,19 @@
 const moment = require('moment');
 
 module.exports = {
-  getMatchNumberByDayOfWeek : matchList => {
-    let matchNumberByDay = {
-      Monday    : 0,
-      Tuesday   : 0,
-      Wednesday : 0,
-      Thursday  : 0,
-      Friday    : 0,
-      Saturday  : 0,
-      Sunday    : 0
-    };
+  // ex: 'dddd' for day of week
+  //     'L'    for day of year
+  //     'H'    for hour
+  //     'MMMM' for month
+  //     'W'    for week
 
+  getMatchNumberByFormat : (matchList, format) => {
+    let matchNumberByFormat = {};
     matchList.forEach(match => {
-      const dayOfWeek = moment(match.timestamp).format("dddd");
-      matchNumberByDay[dayOfWeek] += 1;
+      const timeOfMatch = moment(match.timestamp).format(format);
+      matchNumberByFormat[timeOfMatch] ? matchNumberByFormat[timeOfMatch]++ : matchNumberByFormat[timeOfMatch] = 1;
     });
-    console.log(matchNumberByDay);
-    return matchNumberByDay;
-  },
-
-  getMatchNumberByDay : matchList => {
-    let matchNumberByDay = {};
-    matchList.forEach(match => {
-      const dayOfYear = moment(match.timestamp).format("L");
-      matchNumberByDay[dayOfYear] ? matchNumberByDay[dayOfYear]++ : matchNumberByDay[dayOfYear] = 1;
-    });
-    console.log(matchNumberByDay);
-    return matchNumberByDay;
-  },
-
-  getMatchNumberByHour : matchList => {
-    let matchNumberByHour = {};
-    matchList.forEach(match => {
-      const hourOfDay = moment(match.timestamp).format("H");
-      matchNumberByHour[hourOfDay] ? matchNumberByHour[hourOfDay]++ : matchNumberByHour[hourOfDay] = 1;
-    });
-    console.log(matchNumberByHour);
-    return matchNumberByHour;
+    console.log(matchNumberByFormat);
+    return matchNumberByFormat;
   }
-
 };

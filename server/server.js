@@ -21,7 +21,7 @@ app.get('/login/:summonerName', function(req, res) {
     lol.getRankedMatches(summonerId, function(matchesData) {
       matchesData = JSON.parse(matchesData);
 
-      dateManipulation.getMatchNumberByHour(matchesData.matches);
+      dateManipulation.getMatchNumberByFormat(matchesData.matches, 'W');
       championManipulation.getNumberOfGameByChampion(matchesData.matches);
       roleManipulation.getRoleStats(matchesData.matches);
 
@@ -56,7 +56,7 @@ app.get('/match/:matchId', function(req, res) {
   });
 });
 
-const server = app.listen(process.env.PORT || 3000, function() {
+const server = app.listen(process.env.PORT || 4000, function() {
   const host = server.address().address;
   const port = server.address().port;
 
