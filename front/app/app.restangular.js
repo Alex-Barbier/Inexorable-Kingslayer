@@ -11,5 +11,5 @@
 angular
     .module('inexorableKingslayerApp')
     .config(function(RestangularProvider) {
-        RestangularProvider.setBaseUrl('http://localhost:3000');
+        RestangularProvider.setBaseUrl('http://localhost:4000');
     });
