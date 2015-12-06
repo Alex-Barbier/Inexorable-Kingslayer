@@ -13,5 +13,6 @@ angular
     .module('inexorableKingslayerApp', [
         'ngAnimate',
         'ngTouch',
-        'ui.router'
+        'ui.router',
+        'restangular'
     ]);

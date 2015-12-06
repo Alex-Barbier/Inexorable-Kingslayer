@@ -9,16 +9,20 @@
  */
 
 angular
-    .module('inexorableKingslayerApp')
-    .controller('landingController', ['$http', '$scope', function($http, $scope) {
-    $scope.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-    ];
+  .module('inexorableKingslayerApp')
+  .controller('landingController', ['$rootScope', function($rootScope) {
+    let _this = this;
 
-    $http.get('http://localhost:3000/login/Elwanna')
-        .then(function(data) {
-            console.log(data);
-        });
-}]);
+    _this.trackedUser = {};
+
+    _this.searchPlayer = searchPlayer;
+
+    $rootScope.$on('statUpdate', function(event, payload) {
+      _this.trackedUser = payload;
+    });
+
+    function searchPlayer() {
+      $rootScope.$emit('search', _this.trackedUser.name);
+    }
+
+  }]);

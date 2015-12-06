@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/themes.css">
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     <!-- endbuild -->
   </head>
   <body class="flat-blue" ng-app="inexorableKingslayerApp">
@@ -49,16 +50,20 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="app.js"></script>
         <script src="app.router.js"></script>
+        <script src="app.restangular.js"></script>
+        <script src="services/starter.service.js"></script>
         <script src="layout/landing/landing.js"></script>
         <script src="layout/about/about.js"></script>
         <script src="layout/header/header.js"></script>
         <script src="layout/footer/footer.js"></script>
         <!-- endbuild -->
-</body>
+  </body>
 </html>
