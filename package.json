@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node server/server.js",
     "test": "tape 'lol/test/*.js'",
+    "nyan": "tape 'lol/test/*.js' | tnyan",
     "start": "node server/server.js"
   },
   "repository": {
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "chalk": "^1.1.1",
+    "tap-nyan": "0.0.2",
     "tape": "^4.2.2"
   }
 }
