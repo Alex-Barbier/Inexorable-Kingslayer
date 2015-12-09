@@ -17,9 +17,11 @@ const staticVersions = 'https://ddragon.leagueoflegends.com/api/versions.json';
 let apiCall = rateLimit(10, 10 * 1000, (url, callback) => {
   request(url, (error, response) => {
     if (!error && response.statusCode == 200) {
-      callback(response.body);
+      callback(JSON.parse(response.body));
+      console.log(chalk.green(response.statusCode));
     }
     else {
+      console.log(chalk.red(response.statusCode));
       callback(response);
     }
   });

@@ -15,11 +15,11 @@ app.use(function(req, res, next) {
 app.get('/login/:summonerName', function(req, res) {
   const summonerName = req.params.summonerName;
   lol.getSummonerByName(summonerName, function(summonerData) {
-    summonerData     = JSON.parse(summonerData);
+    summonerData     = summonerData;
     const summonerId = summonerData[summonerName.toLowerCase()].id;
 
     lol.getRankedMatches(summonerId, function(matchesData) {
-      matchesData = JSON.parse(matchesData);
+      matchesData = matchesData;
 
       dateManipulation.getMatchNumberByFormat(matchesData.matches, 'W');
       championManipulation.getNumberOfGameByChampion(matchesData.matches);
@@ -43,7 +43,7 @@ app.get('/ranked/:summonerId', function(req, res) {
       res.send(matchesData);
     }
     if(req.query.last) {
-      matchesData = JSON.parse(matchesData);
+      matchesData = matchesData;
       const matchesToReturn = matchesData.matches.splice(0, req.query.last);
       res.send(matchesToReturn);
     }
