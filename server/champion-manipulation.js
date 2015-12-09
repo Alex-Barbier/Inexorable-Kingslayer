@@ -3,10 +3,10 @@ const staticUrlBasis = 'http://ddragon.leagueoflegends.com/cdn/';
 
 var champions = [];
 lol.getStaticVersion(function(staticVersionData) {
-  staticVersionData   = JSON.parse(staticVersionData);
+  staticVersionData   = staticVersionData;
   const staticVersion = staticVersionData[0];
   lol.getChampionsListImage(function(championsData) {
-    championsData = JSON.parse(championsData);
+    championsData = championsData;
     for (championData in championsData.data) {
       champions.push({
         id    : championsData.data[championData].id,
