@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   staticChampions     : 'v1.2/champion/',
   summonerByName      : 'v1.4/summoner/by-name/',
