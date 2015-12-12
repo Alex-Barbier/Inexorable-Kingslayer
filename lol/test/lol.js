@@ -1,10 +1,38 @@
 'use strict';
 
 const test = require('tape');
-const lol = require('../lol');
+const lolCode = require('../lol');
+var sinon = require('sinon');
 
-test('getStaticVersion should be a function', function (t) {
-  t.equal(typeof lol.getStaticVersion, 'function');
+function createServiceStubs() {
+  return {
+    request: sinon.stub(),
+    chalk: {
+      green: sinon.stub(),
+      red: sinon.stub(),
+      blue: sinon.stub()
+    },
+    rateLimit: require('function-rate-limit'),
+    console: {
+      log: sinon.stub()
+    },
+    JSON: {
+      parse: sinon.stub()
+    }
+  }
+}
+
+test('getStaticVersion should write a blue message', function (t) {
+  const testMessage = 'a blue message';
+
+  var services = createServiceStubs();
+  services.chalk.blue.returns(testMessage);
+  const lol = lolCode(services);
+
+  lol.getStaticVersion(function (staticVersionData) {
+  });
+
+  t.ok(services.console.log.calledWith(testMessage), 'console.log() called with a blue message');
   t.end();
 });
 
@@ -18,10 +46,10 @@ test('getStaticVersion should be a function', function (t) {
 //     }
 // });
 
-test('test summoner api', function (t) {
-  const summonerName = 'Elwanna';
-  t.plan(1);
-  lol.getSummonerByName(summonerName, function (staticVersionData) {
-    t.equal(staticVersionData[summonerName.toLowerCase()].name, summonerName);
-  });
-});
+// test('getSummonerByName should make a call to the api and return a user', function (t) {
+//   const summonerName = 'Elwanna';
+//   t.plan(1);
+//   lol.getSummonerByName(summonerName, function (summonerData) {
+//     t.equal(summonerData[summonerName.toLowerCase()].name, summonerName);
+//   });
+// });

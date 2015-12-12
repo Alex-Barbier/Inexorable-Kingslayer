@@ -14,7 +14,7 @@ module.exports = function core(services) {
   var apiCall = services.rateLimit(10, 10 * 1000, (url, callback) => {
     services.request(url, (error, response) => {
       if (!error && response.statusCode === 200) {
-        callback(JSON.parse(response.body));
+        callback(services.JSON.parse(response.body));
         services.console.log(services.chalk.green(`success`, response.statusCode));
       } else {
         callback(response);

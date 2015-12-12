@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server/server.js",
-    "test": "browserify './lol/test/*.js' | tape-run",
+    "test": "browserify ./lol/test/*.js | tape-run",
     "tape": "tape ./lol/test/*.js",
     "coverage": "browserify -t coverify lol/test/lol.js | tape-run | coverify",
     "nyan": "tape lol/test/*.js | tnyan",
