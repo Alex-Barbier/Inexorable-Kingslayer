@@ -1,4 +1,4 @@
-const lol            = require('../lol/lol');
+const lol            = require('../lol/main');
 const staticUrlBasis = 'http://ddragon.leagueoflegends.com/cdn/';
 
 var champions = [];

@@ -1,5 +1,5 @@
 const express              = require('express');
-const lol                  = require('../lol/lol');
+const lol                  = require('../lol/main');
 const dateManipulation     = require('./date-manipulation');
 const championManipulation = require('./champion-manipulation');
 const roleManipulation     = require('./role-manipulation');
