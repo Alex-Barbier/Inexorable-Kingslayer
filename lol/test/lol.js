@@ -7,32 +7,33 @@ var sinon = require('sinon');
 function createServiceStubs() {
   return {
     request: sinon.stub(),
-    chalk: {
-      green: sinon.stub(),
-      red: sinon.stub(),
-      blue: sinon.stub()
-    },
+    chalk: require('chalk'),
     rateLimit: require('function-rate-limit'),
     console: {
       log: sinon.stub()
-    },
-    JSON: {
-      parse: sinon.stub()
     }
   }
 }
 
-test('getStaticVersion should write a blue message', function (t) {
-  const testMessage = 'a blue message';
-
+test('getStaticVersion should log an info message', function (t) {
   var services = createServiceStubs();
-  services.chalk.blue.returns(testMessage);
   const lol = lolCode(services);
 
-  lol.getStaticVersion(function (staticVersionData) {
-  });
+  lol.getStaticVersion();
 
-  t.ok(services.console.log.calledWith(testMessage), 'console.log() called with a blue message');
+  t.ok(services.console.log.calledWith('Fetching static api version'), 'console.log() called with an info message');
+  t.end();
+});
+
+test('getStaticVersion should call the right url', function (t) {
+  var services = createServiceStubs();
+  const lol = lolCode(services);
+
+  lol.getStaticVersion();
+
+  t.ok(services
+    .request
+    .calledWith('https://ddragon.leagueoflegends.com/api/versions.json'), 'request called with static version url');
   t.end();
 });
 

@@ -2,11 +2,15 @@ const lol            = require('../lol/main');
 const staticUrlBasis = 'http://ddragon.leagueoflegends.com/cdn/';
 
 var champions = [];
-lol.getStaticVersion(function(staticVersionData) {
-  staticVersionData   = staticVersionData;
-  const staticVersion = staticVersionData[0];
-  lol.getChampionsListImage(function(championsData) {
-    championsData = championsData;
+var staticVersion;
+lol.getStaticVersion()
+  .then(function(staticVersionData) {
+    staticVersionData   = JSON.parse(staticVersionData);
+    staticVersion = staticVersionData[0];
+    return lol.getChampionsListImage();
+  })
+  .then(function(championsData) {
+    championsData = JSON.parse(championsData);
     for (championData in championsData.data) {
       champions.push({
         id    : championsData.data[championData].id,
@@ -14,8 +18,8 @@ lol.getStaticVersion(function(staticVersionData) {
         image : `${staticUrlBasis}${staticVersion}/img/champion/${championsData.data[championData].image.full}`
       });
     }
+    return championsData;
   });
-});
 
 function getChampionNameById(championId) {
   return champions.filter(champion => champion.id === championId)[0].name;

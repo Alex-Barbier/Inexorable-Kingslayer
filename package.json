@@ -29,12 +29,12 @@
     "function-rate-limit": "^1.0.1",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.1",
-    "moment": "^2.10.6",
-    "request": "2.57.0"
+    "moment": "^2.10.6"
   },
   "devDependencies": {
     "chalk": "^1.1.1",
     "coverify": "^1.4.1",
+    "request-promise": "^1.0.2",
     "tap-nyan": "0.0.2",
     "tape": "^4.2.2"
   }
