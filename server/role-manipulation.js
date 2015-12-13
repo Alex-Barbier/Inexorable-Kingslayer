@@ -1,5 +1,3 @@
-const lol = require('../lol/lol');
-
 module.exports = {
   getRoleStats : matchesList => {
     var rolesList = {

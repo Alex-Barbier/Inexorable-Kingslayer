@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server/server.js",
-    "test": "tape 'lol/test/*.js'",
-    "nyan": "tape 'lol/test/*.js' | tnyan",
+    "test": "browserify ./lol/test/*.js | tape-run",
+    "tape": "tape ./lol/test/*.js",
+    "coverage": "browserify -t coverify lol/test/lol.js | tape-run | coverify",
+    "nyan": "tape lol/test/*.js | tnyan",
     "start": "node server/server.js"
   },
   "repository": {
@@ -20,17 +22,19 @@
   },
   "homepage": "https://github.com/Alex-Barbier/Inexorable-Kingslayer#readme",
   "dependencies": {
+    "babelify": "^7.2.0",
     "eslint": "^1.10.2",
     "eslint-config-meetic": "^0.1.1",
     "express": "^4.13.3",
     "function-rate-limit": "^1.0.1",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.1",
-    "moment": "^2.10.6",
-    "request": "^2.67.0"
+    "moment": "^2.10.6"
   },
   "devDependencies": {
     "chalk": "^1.1.1",
+    "coverify": "^1.4.1",
+    "request-promise": "^1.0.2",
     "tap-nyan": "0.0.2",
     "tape": "^4.2.2"
   }

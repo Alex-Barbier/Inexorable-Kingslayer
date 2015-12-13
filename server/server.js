@@ -1,5 +1,5 @@
 const express              = require('express');
-const lol                  = require('../lol/lol');
+const lol                  = require('../lol/main');
 const dateManipulation     = require('./date-manipulation');
 const championManipulation = require('./champion-manipulation');
 const roleManipulation     = require('./role-manipulation');
@@ -14,27 +14,29 @@ app.use(function(req, res, next) {
 
 app.get('/login/:summonerName', function(req, res) {
   const summonerName = req.params.summonerName;
-  lol.getSummonerByName(summonerName, function(summonerData) {
-    summonerData     = summonerData;
-    const summonerId = summonerData[summonerName.toLowerCase()].id;
-
-    lol.getRankedMatches(summonerId, function(matchesData) {
-      matchesData = matchesData;
-
+  lol
+    .getSummonerByName(summonerName)
+    .then(summonerData => {
+      summonerData = JSON.parse(summonerData);
+      const summonerId = summonerData[summonerName.toLowerCase()].id;
+      return lol.getRankedMatches(summonerId);
+    })
+    .then(matchesData => {
+      matchesData = JSON.parse(matchesData);
       dateManipulation.getMatchNumberByFormat(matchesData.matches, 'W');
       championManipulation.getNumberOfGameByChampion(matchesData.matches);
       roleManipulation.getRoleStats(matchesData.matches);
 
       res.send(matchesData.matches);
-
     });
   });
-});
 
 app.get('/summoner/:summonerName', function(req, res) {
-  lol.getSummonerByName(req.params.summonerName, function(summonerData) {
-    res.send(summonerData);
-  });
+  lol
+    .getSummonerByName(req.params.summonerName)
+    .then(function(summonerData) {
+      res.send(summonerData);
+    });
 });
 
 app.get('/ranked/:summonerId', function(req, res) {
