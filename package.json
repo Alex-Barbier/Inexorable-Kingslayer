@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server/server.js",
-    "test": "browserify ./lol/test/*.js | tape-run",
+    "test": "browserify './lol/test/*.js' | tape-run",
     "tape": "tape ./lol/test/*.js",
     "coverage": "browserify -t coverify lol/test/lol.js | tape-run | coverify",
     "nyan": "tape lol/test/*.js | tnyan",
@@ -29,7 +29,8 @@
     "function-rate-limit": "^1.0.1",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.1",
-    "moment": "^2.10.6"
+    "moment": "^2.10.6",
+    "sinon": "^1.17.2"
   },
   "devDependencies": {
     "chalk": "^1.1.1",
