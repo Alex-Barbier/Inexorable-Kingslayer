@@ -2,8 +2,8 @@ var lol = require('./lol');
 var services = {
   request: require('request-promise'),
   chalk: require('chalk'),
-  console: console
+  console: console,
+  apiKey: require('../api-key')
 };
 
-// module.exports = {};
 module.exports = lol(services);
