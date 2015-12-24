@@ -25,7 +25,6 @@ module.exports = {
       }
       return match;
     });
-    console.log(rolesList);
     return rolesList;
   }
 };

@@ -39,7 +39,6 @@ module.exports = {
           championNumber[match.championName]++ :
           championNumber[match.championName] = 1;
     });
-    console.log(championNumber);
     return championNumber;
   }
 

@@ -23,11 +23,21 @@ app.get('/login/:summonerName', function(req, res) {
     })
     .then(matchesData => {
       matchesData = JSON.parse(matchesData);
-      dateManipulation.getMatchNumberByFormat(matchesData.matches, 'W');
-      championManipulation.getNumberOfGameByChampion(matchesData.matches);
-      roleManipulation.getRoleStats(matchesData.matches);
-
-      res.send(matchesData.matches);
+      const matchesByHour = dateManipulation.getMatchNumberByFormat(matchesData.matches, 'H');
+      const matchesByDay = dateManipulation.getMatchNumberByFormat(matchesData.matches, 'L');
+      const matchesByMonth = dateManipulation.getMatchNumberByFormat(matchesData.matches, 'MMMM');
+      
+      const matchesByChamp = championManipulation.getNumberOfGameByChampion(matchesData.matches);
+      const matchesByRole = roleManipulation.getRoleStats(matchesData.matches);
+      
+      res.send({
+          matchesNumber: matchesData.matches.length,
+          matchesByHour,
+          matchesByDay,
+          matchesByMonth,
+          matchesByChamp,
+          matchesByRole
+      });
     });
   });
 

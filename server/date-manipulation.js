@@ -15,7 +15,6 @@ module.exports = {
       const timeOfMatch = moment(match.timestamp).format(format);
       matchNumberByFormat[timeOfMatch] ? matchNumberByFormat[timeOfMatch]++ : matchNumberByFormat[timeOfMatch] = 1;
     });
-    console.log(matchNumberByFormat);
     return matchNumberByFormat;
   }
 };
