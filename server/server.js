@@ -13,16 +13,25 @@ app.use(function(req, res, next) {
 });
 
 app.get('/login/:summonerName', function(req, res) {
+  if(req.query.region) {
+      lol.setRegion(req.query.region);
+  }
+  console.log(req.query.region);
   const summonerName = req.params.summonerName;
   lol
     .getSummonerByName(summonerName)
     .then(summonerData => {
+      if(req.query.region) {
+        lol.setRegion(req.query.region);
+      }
       summonerData = JSON.parse(summonerData);
-      const summonerId = summonerData[summonerName.toLowerCase()].id;
+      console.log(summonerData);
+      const summonerId = summonerData[summonerName.toLowerCase().replace(/ /g,'')].id;
       return lol.getRankedMatches(summonerId);
     })
     .then(matchesData => {
       matchesData = JSON.parse(matchesData);
+      console.log(matchesData);
       const matchesByHour = dateManipulation.getMatchNumberByFormat(matchesData.matches, 'H');
       const matchesByDay = dateManipulation.getMatchNumberByFormat(matchesData.matches, 'L');
       const matchesByMonth = dateManipulation.getMatchNumberByFormat(matchesData.matches, 'MMMM');
